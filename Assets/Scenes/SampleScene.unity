@@ -907,7 +907,10 @@ MonoBehaviour:
   - {fileID: 807878868}
   - {fileID: 1422406954}
   - {fileID: 1910407254}
-  _randomnessRange: {x: -5, y: 5}
+  _answersRandomnessRange: {x: -120, y: 10}
+  _randomQuestionAnswers:
+  - {x: -33, y: 96}
+  - {x: 14, y: 210}
 --- !u!1 &905886233
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +993,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 905886236}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 857555815}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &905886236
 MonoBehaviour:
   m_ObjectHideFlags: 0

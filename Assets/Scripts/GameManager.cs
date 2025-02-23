@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField]private TMP_Text _questionText;
     [SerializeField] private TMP_Text[] _answers = new TMP_Text[3];
-    [SerializeField] private Vector2 _randomnessRange;
+    [SerializeField] private Vector2 _answersRandomnessRange;
+    [SerializeField] Vector2Int[] _randomQuestionAnswers = new Vector2Int[2];
     private void Awake()
     {
         if (instance == null)
@@ -26,12 +27,14 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        ChangeQuestionText("70 + 8 ?");
+        ChangeQuestionText();
     }
-    void ChangeQuestionText(string questionString)
+     public void ChangeQuestionText()
     {
-        _questionText.text = questionString;
-        ChangeAnswers(78);
+        int result;
+        Vector2Int paramater = CreateEquation(out result);
+        _questionText.text = paramater.x + " + " + paramater.y + " ?";
+        ChangeAnswers(result);
     }
     void ChangeAnswers (int correctValue)
     {
@@ -45,15 +48,23 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                int offset = (int)Random.Range(_randomnessRange.x, _randomnessRange.y);
+                int offset = (int)Random.Range(_answersRandomnessRange.x, _answersRandomnessRange.y);
                 while(offset == 0)
                 {
-                     offset = (int)Random.Range(_randomnessRange.x, _randomnessRange.y);
+                     offset = (int)Random.Range(_answersRandomnessRange.x, _answersRandomnessRange.y);
                 }
                 answer.text = (correctValue + offset).ToString();
 
             }
         }
+    }
+    Vector2Int CreateEquation(out int result)
+    {
+        int first = Random.Range(_randomQuestionAnswers[0].x, _randomQuestionAnswers[0].y);
+        int second = Random.Range(_randomQuestionAnswers[1].x, _randomQuestionAnswers[1].y);
+        result = first + second;
+        return new Vector2Int(first, second);
+        
     }
     
 }
