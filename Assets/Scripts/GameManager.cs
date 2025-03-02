@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
     void ChangeAnswers (int correctValue)
     {
-        int randomAnswer = Random.Range(0,_answers.Length - 1);
+        int randomAnswer = Random.Range(0,_answers.Length);
         TMP_Text correctAnswer = _answers[randomAnswer];
         foreach(TMP_Text answer in _answers)
         {
