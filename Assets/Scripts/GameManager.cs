@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
         get { return instance; }
         private set {; } 
     }
+    
     [SerializeField]private TMP_Text _questionText;
     [SerializeField] private TMP_Text[] _answers = new TMP_Text[3];
     [SerializeField] private Vector2 _answersRandomnessRange;
     [SerializeField] Vector2Int[] _randomQuestionAnswers = new Vector2Int[2];
+    private int _currentCorrectAnswer;
     private void Awake()
     {
         if (instance == null)
@@ -24,12 +26,17 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+        EventBus<SelectAnswer>.OnEvent += CheckAnswer;
     }
     void Start()
     {
         ChangeQuestionText();
     }
-     public void ChangeQuestionText()
+    private void OnDestroy()
+    {
+        EventBus<SelectAnswer>.OnEvent -= CheckAnswer;
+    }
+    public void ChangeQuestionText()
     {
         int result;
         Vector2Int paramater = CreateEquation(out result);
@@ -38,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     void ChangeAnswers (int correctValue)
     {
+        _currentCorrectAnswer = correctValue;
         int randomAnswer = Random.Range(0,_answers.Length);
         TMP_Text correctAnswer = _answers[randomAnswer];
         foreach(TMP_Text answer in _answers)
@@ -65,6 +73,18 @@ public class GameManager : MonoBehaviour
         result = first + second;
         return new Vector2Int(first, second);
         
+    }
+    void CheckAnswer(SelectAnswer e) 
+    {
+        if (e.answer == _currentCorrectAnswer)
+        {
+            Debug.Log("correctAnswer");
+            ChangeQuestionText();
+        }
+        else
+        {
+            Debug.Log("Try Again");
+        }
     }
     
 }
