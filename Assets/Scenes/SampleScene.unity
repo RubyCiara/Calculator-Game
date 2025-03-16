@@ -963,6 +963,10 @@ MonoBehaviour:
   _randomQuestionAnswers:
   - {x: -33, y: 96}
   - {x: 14, y: 210}
+  equationTypes:
+  - {fileID: 11400000, guid: e51adb7bbfbf7ba4282a129185d883eb, type: 2}
+  - {fileID: 11400000, guid: b89631a837b45c34680317787ec811fe, type: 2}
+  - {fileID: 11400000, guid: b35cb8a7dc297d84faf901f4ef692c4c, type: 2}
 --- !u!1 &905886233
 GameObject:
   m_ObjectHideFlags: 0
