@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<EquationType> equationTypes;
     private int _currentCorrectAnswer;
     private EquationType _currentEquationType;
+    public Slider hSlider;
     private void Awake()
     {
         if (instance == null)
@@ -100,6 +102,12 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Try Again");
+            hSlider.value -= 10;
+            if (hSlider.value == 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+           
         }
     }
     
