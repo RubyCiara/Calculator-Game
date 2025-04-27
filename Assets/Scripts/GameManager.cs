@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeQuestionText();
+        hSlider.value = 40;
     }
     private void OnDestroy()
     {
